@@ -1,0 +1,149 @@
+<main>
+    <!-- breadcrumb area start -->
+    <section class="tp-breadcrumb-area tp-breadcrumb-style-2 p-relative z-index-1" data-bg-color="#fff">
+        <div class="tp-breadcrumb-wrapper" style="background-color: #f4f6f9;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="tp-breadcrumb-content">
+                            <nav>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a routerLink="/">Inicio</a></li>
+                                    <li class="breadcrumb-item active">{{ department?.name }}</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb area end -->
+
+    @if(department){
+    <!-- department header area start -->
+    <section class="tp-product-category pt-60 pb-15">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="tp-section-title text-center mb-40">
+                        <h3 class="tp-section-title">{{ department.name }}</h3>
+                    </div>
+                </div>
+            </div>
+
+            @if(categories.length > 0){
+            <!-- categories grid -->
+            <div class="row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-2">
+                @for(categorie of categories; track categorie.id) {
+                <div class="col">
+                    <div class="tp-product-category-item text-center mb-30">
+                        <div class="tp-product-category-thumb">
+                            @if(categorie.imagen){
+                            <a routerLink="/productos-busqueda" [queryParams]="{category: categorie.id}">
+                                <img [src]="categorie.imagen" [alt]="categorie.name" style="width:100%; height:150px; object-fit:contain;">
+                            </a>
+                            }
+                        </div>
+                        <div class="tp-product-category-content">
+                            <h4 class="tp-product-category-title">
+                                <a routerLink="/productos-busqueda" [queryParams]="{category: categorie.id}">{{ categorie.name }}</a>
+                            </h4>
+                            @if(categorie.subcategories && categorie.subcategories.length > 0){
+                            <span>{{ categorie.subcategories.length }} Subcategorías</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+                }
+            </div>
+            }
+        </div>
+    </section>
+    <!-- department header area end -->
+
+    <!-- products area start -->
+    @if(PRODUCTS.length > 0){
+    <section class="tp-product-area pb-70">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="tp-section-title text-center mb-40">
+                        <h3 class="tp-section-title">Productos del Departamento</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                @for(PRODUCT of PRODUCTS; track PRODUCT.id) {
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                    <div class="tp-product-item-2 mb-30">
+                        <div class="tp-product-thumb-2 p-relative">
+                            <a [routerLink]="'/producto/' + PRODUCT.slug">
+                                <img [src]="PRODUCT.imagen" [alt]="PRODUCT.title">
+                            </a>
+                            @if(PRODUCT.discount_g){
+                            <div class="tp-product-badge">
+                                <span class="product-discount">
+                                    @if(PRODUCT.discount_g.type_discount == 1){
+                                    -{{ PRODUCT.discount_g.discount }}%
+                                    }@else{
+                                    -{{ currency == 'PEN' ? 'S/' : '$' }}{{ PRODUCT.discount_g.discount }}
+                                    }
+                                </span>
+                            </div>
+                            }
+                            <div class="tp-product-action">
+                                <button class="tp-product-action-btn" (click)="addCompareProduct(PRODUCT)" title="Comparar">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M14 12V4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M16 10L12.69 13.31L9.38 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M2 4V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M0 6L3.31 2.69L6.62 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </button>
+                                <button class="tp-product-action-btn" (click)="addCart(PRODUCT)" title="Agregar al carrito">
+                                    <svg width="17" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16 1H14.2C13.75 1 13.36 1.3 13.24 1.72L12.2 5.44C12.09 5.84 12.4 6.24 12.82 6.24H4.18L3.8 4.44H12.82" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M12.82 6.24L12.2 9.44C12.09 9.84 12.4 10.24 12.82 10.24H4.18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <circle cx="5.2" cy="13.2" r="1.2" stroke="currentColor" stroke-width="1.5"/>
+                                        <circle cx="12.2" cy="13.2" r="1.2" stroke="currentColor" stroke-width="1.5"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="tp-product-content">
+                            <h3 class="tp-product-title">
+                                <a [routerLink]="'/producto/' + PRODUCT.slug">{{ PRODUCT.title }}</a>
+                            </h3>
+                            <div class="tp-product-price-wrapper">
+                                @if(PRODUCT.discount_g){
+                                <span class="tp-product-price old-price">{{ currency == 'PEN' ? 'S/' : '$' }}{{ getTotalCurrency(PRODUCT) }}</span>
+                                <span class="tp-product-price new-price">{{ currency == 'PEN' ? 'S/' : '$' }}{{ getTotalPriceProduct(PRODUCT) }}</span>
+                                }@else{
+                                <span class="tp-product-price">{{ currency == 'PEN' ? 'S/' : '$' }}{{ getTotalCurrency(PRODUCT) }}</span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+    </section>
+    }
+    }@else{
+    <section class="tp-product-area pb-70">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h3>Departamento no encontrado</h3>
+                    <a routerLink="/" class="tp-btn mt-20">Volver al Inicio</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    }
+</main>
+
+<!-- modal product -->
+<app-modal-product [product_selected]="product_selected"></app-modal-product>

@@ -20,6 +20,86 @@ export class HeaderComponent {
 
   categories_menus:any = [];
   currency:string = 'PEN';
+  language:string = 'ES';
+
+  translations:any = {
+    'ES': {
+      'allCategories': 'Todas las Categorías',
+      'allDepartments': 'Todos los Departamentos',
+      'contactUs': 'Contactar',
+      'currency': 'Moneda',
+      'language': 'Idioma',
+      'setting': 'Configuración',
+      'myProfile': 'Mi Perfil',
+      'wishlist': 'Favoritos',
+      'cart': 'Carrito',
+      'logout': 'Cerrar Sesión',
+      'hello': 'Hola',
+      'guest': 'Invitado',
+      'signIn': 'Iniciar Sesión',
+      'goProfile': 'Mi Perfil',
+      'search': 'Buscar',
+      'searchProducts': 'Buscar Productos...',
+      'selectCategory': 'Seleccionar Categoría',
+      'searchBy': 'Buscar por:',
+      'freeShipping': 'Envío GRATIS en compras mayores a S/570+',
+      'store': 'Tienda',
+      'menu': 'Menú',
+      'home': 'Inicio',
+      'shop': 'Tienda',
+      'products': 'Productos',
+      'coupons': 'Cupones',
+      'blog': 'Blog',
+      'contact': 'Contacto',
+      'shoppingCart': 'Carrito de Compras',
+      'yourCartEmpty': 'Tu Carrito está vacío',
+      'goToShop': 'Ir a la Tienda',
+      'viewCart': 'Ver Carrito',
+      'checkout': 'Pagar',
+      'subtotal': 'Subtotal:',
+      'hotline': 'Línea Directa:'
+    },
+    'EN': {
+      'allCategories': 'All Categories',
+      'allDepartments': 'All Departments',
+      'contactUs': 'Contact Us',
+      'currency': 'Currency',
+      'language': 'Language',
+      'setting': 'Setting',
+      'myProfile': 'My Profile',
+      'wishlist': 'Wishlist',
+      'cart': 'Cart',
+      'logout': 'Logout',
+      'hello': 'Hello',
+      'guest': 'Guest',
+      'signIn': 'Sign In',
+      'goProfile': 'Go Profile',
+      'search': 'Search',
+      'searchProducts': 'Search for Products...',
+      'selectCategory': 'Select Category',
+      'searchBy': 'Search by:',
+      'freeShipping': 'FREE Express Shipping On Orders $570+',
+      'store': 'Store',
+      'menu': 'Menu',
+      'home': 'Home',
+      'shop': 'Shop',
+      'products': 'Products',
+      'coupons': 'Coupons',
+      'blog': 'Blog',
+      'contact': 'Contact',
+      'shoppingCart': 'Shopping Cart',
+      'yourCartEmpty': 'Your Cart is empty',
+      'goToShop': 'Go to Shop',
+      'viewCart': 'View Cart',
+      'checkout': 'Checkout',
+      'subtotal': 'Subtotal:',
+      'hotline': 'Hotline:'
+    }
+  };
+
+  t(key:string):string {
+    return this.translations[this.language][key] || key;
+  }
 
   user:any;
   listCarts:any = [];
@@ -38,6 +118,7 @@ export class HeaderComponent {
         this.categories_menus = resp.categories_menus;
       })
       this.currency = this.cookieService.get("currency") ? this.cookieService.get("currency") : 'PEN';
+      this.language = this.cookieService.get("language") ? this.cookieService.get("language") : 'ES';
       this.user = this.cartService.authService.user;
       
       if(this.user){
@@ -111,5 +192,13 @@ export class HeaderComponent {
 
   searchProduct(){
     window.location.href = "/productos-busqueda?search="+this.searchT;
+  }
+
+  changeLanguage(lang:string){
+    this.language = lang;
+    this.cookieService.set("language", lang);
+    setTimeout(() => {
+      window.location.reload();
+    }, 25);
   }
 }

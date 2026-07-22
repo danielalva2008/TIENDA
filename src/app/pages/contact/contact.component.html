@@ -1,0 +1,106 @@
+<main>
+    <!-- breadcrumb area start -->
+    <section class="tp-breadcrumb-area tp-breadcrumb-style-2 p-relative z-index-1" data-bg-color="#fff">
+        <div class="tp-breadcrumb-wrapper" style="background-color: #f4f6f9;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="tp-breadcrumb-content">
+                            <nav>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a routerLink="/">Inicio</a></li>
+                                    <li class="breadcrumb-item active">Contacto</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb area end -->
+
+    <!-- contact area start -->
+    <section class="tp-contact-area pt-100 pb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="tp-contact-item mb-30">
+                        <div class="tp-contact-icon mb-20">
+                            <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19 2C11.82 2 6 7.82 6 15C6 25.25 19 36 19 36C19 36 32 25.25 32 15C32 7.82 26.18 2 19 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="19" cy="15" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="tp-contact-content">
+                            <h3 class="tp-contact-title">Direccion</h3>
+                            <p>Lima, Peru</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="tp-contact-item mb-30">
+                        <div class="tp-contact-icon mb-20">
+                            <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M33 27.28V31.43C33 31.96 32.57 32.4 32.04 32.44C31.63 32.47 31.27 32.49 30.91 32.49C14.88 32.49 1.89 19.5 1.89 3.47C1.89 3.11 1.91 2.75 1.94 2.34C1.98 1.81 2.42 1.38 2.95 1.38H7.1C7.53 1.38 7.9 1.67 7.98 2.09C8.09 2.61 8.23 3.12 8.4 3.62C8.55 4.06 8.43 4.54 8.1 4.87L6.37 6.6C8.05 9.81 10.69 12.45 13.9 14.13L15.63 12.4C15.96 12.07 16.44 11.95 16.88 12.1C17.38 12.27 17.89 12.41 18.41 12.52C18.83 12.6 19.12 12.97 19.12 13.4V17.55" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="tp-contact-content">
+                            <h3 class="tp-contact-title">Telefono</h3>
+                            <p>+51 999 999 999</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="tp-contact-item mb-30">
+                        <div class="tp-contact-icon mb-20">
+                            <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 8L19 20L33 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <rect x="3" y="6" width="32" height="26" rx="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="tp-contact-content">
+                            <h3 class="tp-contact-title">Email</h3>
+                            <p>contacto&#64;geosan.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-30">
+                <div class="col-xl-8 col-lg-8">
+                    <div class="tp-contact-form">
+                        <h3 class="tp-contact-title mb-30">Envianos un mensaje</h3>
+                        <form (ngSubmit)="sendMessage()">
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <div class="tp-contact-input mb-20">
+                                        <input type="text" [(ngModel)]="name" name="name" placeholder="Nombre completo">
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="tp-contact-input mb-20">
+                                        <input type="email" [(ngModel)]="email" name="email" placeholder="Correo electronico">
+                                    </div>
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="tp-contact-input mb-20">
+                                        <input type="text" [(ngModel)]="subject" name="subject" placeholder="Asunto">
+                                    </div>
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="tp-contact-input mb-20">
+                                        <textarea [(ngModel)]="message" name="message" cols="30" rows="10" placeholder="Mensaje"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-xl-12">
+                                    <button type="submit" class="tp-btn tp-btn-2">Enviar Mensaje</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- contact area end -->
+</main>

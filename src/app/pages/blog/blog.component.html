@@ -1,0 +1,52 @@
+<main>
+    <!-- breadcrumb area start -->
+    <section class="tp-breadcrumb-area tp-breadcrumb-style-2 p-relative z-index-1" data-bg-color="#fff">
+        <div class="tp-breadcrumb-wrapper" style="background-color: #f4f6f9;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="tp-breadcrumb-content">
+                            <nav>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a routerLink="/">Inicio</a></li>
+                                    <li class="breadcrumb-item active">Blog</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb area end -->
+
+    <!-- blog area start -->
+    <section class="tp-blog-area pt-100 pb-100">
+        <div class="container">
+            <div class="row">
+                @for(post of blogPosts; track post.id) {
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="tp-blog-item mb-30">
+                        <div class="tp-blog-thumb fix">
+                            <a href="#" onclick="return false;">
+                                <img [src]="post.imagen" [alt]="post.title" style="width:100%; height:250px; object-fit:cover;">
+                            </a>
+                        </div>
+                        <div class="tp-blog-content">
+                            <div class="tp-blog-meta">
+                                <span>{{ post.date }}</span>
+                                <a href="#" onclick="return false;">{{ post.category }}</a>
+                            </div>
+                            <h3 class="tp-blog-title">
+                                <a href="#" onclick="return false;">{{ post.title }}</a>
+                            </h3>
+                            <p>{{ post.excerpt }}</p>
+                        </div>
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+    </section>
+    <!-- blog area end -->
+</main>

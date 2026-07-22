@@ -15,6 +15,9 @@ import { ProfileClientComponent } from './pages/view-auth/profile-client/profile
 import { FilterAdvanceComponent } from './pages/guest-view/filter-advance/filter-advance.component';
 import { CampaingLinkComponent } from './pages/guest-view/campaing-link/campaing-link.component';
 import { CompareProductComponent } from './pages/guest-view/compare-product/compare-product.component';
+import { DepartmentComponent } from './pages/department/department.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { BlogComponent } from './pages/blog/blog.component';
 
 export const routes: Routes = [
     {
@@ -85,5 +88,17 @@ export const routes: Routes = [
     {
         path: 'compare-product',
         component: CompareProductComponent,
+    },
+    {
+        path: 'departamento/:slug',
+        component: DepartmentComponent,
+    },
+    {
+        path: 'contacto',
+        component: ContactComponent,
+    },
+    {
+        path: 'blog',
+        component: BlogComponent,
     },
 ];
