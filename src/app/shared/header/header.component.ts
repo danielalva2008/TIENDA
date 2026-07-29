@@ -57,9 +57,10 @@ export class HeaderComponent {
       'viewCart': 'Ver Carrito',
       'checkout': 'Pagar',
       'subtotal': 'Subtotal:',
-      'hotline': 'Línea Directa:'
-    },
-    'EN': {
+       'hotline': 'Línea Directa:',
+       'whatsapp': 'Escríbenos por WhatsApp'
+     },
+     'EN': {
       'allCategories': 'All Categories',
       'allDepartments': 'All Departments',
       'contactUs': 'Contact Us',
@@ -93,8 +94,9 @@ export class HeaderComponent {
       'viewCart': 'View Cart',
       'checkout': 'Checkout',
       'subtotal': 'Subtotal:',
-      'hotline': 'Hotline:'
-    }
+       'hotline': 'Hotline:',
+       'whatsapp': 'Message us on WhatsApp'
+     }
   };
 
   t(key:string):string {
@@ -115,7 +117,7 @@ export class HeaderComponent {
     afterNextRender(() => {
       this.homeService.menus().subscribe((resp:any) => {
         console.log(resp);
-        this.categories_menus = resp.categories_menus;
+        this.categories_menus = resp.categories_menus.filter((menu:any) => menu.categories && menu.categories.length > 0);
       })
       this.currency = this.cookieService.get("currency") ? this.cookieService.get("currency") : 'PEN';
       this.language = this.cookieService.get("language") ? this.cookieService.get("language") : 'ES';

@@ -22,7 +22,12 @@ declare function MODAL_PRODUCT_DETAIL([]):any;
 })
 export class HomeComponent {
   
-  SLIDERS:any = [];
+  SLIDERS:any = [
+    { id: 1, imagen: 'assets/img/slider/banner_web_faro1_2000x.webp', link: '/productos-busqueda', color: '#F5A623' },
+    { id: 2, imagen: 'assets/img/slider/banner_web_seguridad_vial1_2000x.webp', link: '/productos-busqueda', color: '#F5A623' },
+    { id: 3, imagen: 'assets/img/slider/banner_equipamiento_minero_desktop_2000x.webp', link: '/productos-busqueda', color: '#F5A623' },
+    { id: 4, imagen: 'assets/img/slider/banner_web_epps1_2000x.webp', link: '/productos-busqueda', color: '#F5A623' },
+  ];
   CATEGORIES_RANDOMS:any = [];
   
   TRADING_PRODUCT_NEW:any = [];
@@ -54,7 +59,6 @@ export class HomeComponent {
     // afterNextRender(() => {
       this.homeService.home().subscribe((resp:any) => {
         console.log(resp);
-        this.SLIDERS = resp.sliders_principal;
         this.CATEGORIES_RANDOMS = resp.categories_randoms;
         this.TRADING_PRODUCT_NEW = resp.product_tranding_new.data;
         this.TRADING_PRODUCT_FEATURE = resp.product_tranding_featured.data;
